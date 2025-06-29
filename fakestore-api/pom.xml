@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>org.samsung</groupId>
-	<artifactId>fakestore-api</artifactId>
+	<artifactId>samsung-fakestore-api</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>fakestore-api</name>
-	<description>fakestore-api</description>
+	<name>samsung-fakestore-api</name>
+	<description>samsung-fakestore-api</description>
 	<url/>
 	<licenses>
 		<license/>
