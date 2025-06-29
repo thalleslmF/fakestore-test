@@ -6,7 +6,7 @@ public class ConfigLoader {
         if (System.getenv("HOST_ORDERS") != null) {
             return System.getenv("HOST_ORDERS");
         } else {
-            return "http://localhost:8081"
+            return "http://localhost:8081";
         }
 
     }

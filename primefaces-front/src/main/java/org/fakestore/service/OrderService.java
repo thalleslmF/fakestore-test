@@ -22,7 +22,7 @@ import java.util.List;
 public class OrderService implements Serializable {
 
     private String getApiURL() {
-        return new ConfigLoader().get("store.api.host");
+        return new ConfigLoader().getUrlOrders();
     }
 
     public List<Order> fetchOrders(String userId, Instant startDate, Instant endDate, String orderId) throws IOException {
