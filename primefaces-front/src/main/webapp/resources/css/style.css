@@ -1,0 +1,153 @@
+:root {
+    --viewport: 1366px;
+}
+.client-tabview {
+    max-width: var(--viewport) !important;
+    margin-left: 3rem !important;
+    margin-right: auto !important;
+    margin-bottom: 2rem !important;
+}
+.form-group label{
+    padding: 5px;
+    border-bottom: 1px black solid !important;
+}
+.button-group button {
+    color: black !important;
+    background-color: white !important;
+    border: 1px solid #000;
+}
+.prod-table {
+    margin: auto;
+    background-color: #f0f0f0 !important;
+    border-collapse: collapse !important;
+}
+.ui-datatable thead th {
+    background-color: #f0f0f0;
+    border-bottom: 2px solid black !important;
+    padding: 8px !important;
+    text-align: left !important;
+}
+.table-products td {
+    padding: 8px;
+}
+.order-summary-start {
+    display: flex;
+    gap: 2rem;
+}
+
+.prod-col-product {
+    width: 50%;
+}
+
+.prod-col-other {
+    width: 16.6%;
+}
+
+
+.ui-state.active {
+    color: #99cc99 !important;
+    border-color: #f0f0f0 !important;
+}
+.ui-state-active {
+    background-color: #a9a5a5 !important;
+    border-color: #a9a5a5 !important;
+}
+
+.client-tabview .ui-tabs-panels {
+    border: 1px solid #ccc !important;
+    /*padding: 2rem !important;*/
+    /*margin: 10px;*/
+}
+.orders-summary {
+    display: flex;
+    justify-content: space-between;
+}
+.date-range-inputs {
+    max-width: 300px;
+    width: 100%;
+    display: flex;
+    gap: 0.5rem;
+}
+
+.date-range-inputs input {
+    max-width: 150px !important;
+    width: 100% !important;
+}
+.ui-state-active a {
+    color: black !important;
+
+}
+
+.form-group {
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    align-items: center;
+    margin: 1rem 0 1rem 5%;
+    max-width: var(--viewport);
+}
+.button-group {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    max-width: 450px;
+}
+input,
+select,
+textarea {
+    border: 1px solid #000;
+    border-radius: 4px;
+    padding: 0.5rem;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+.buttons-align-right {
+}
+/* PrimeFaces date picker e select menu */
+ .ui-inputfield {
+    border: 1px solid #000 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
+    .form-group input,
+    .form-group select,
+    .form-group .ui-inputfield,
+    .form-group .ui-selectonemenu,
+    .form-group .ui-datepicker {
+        max-width: 300px;
+        width: 100%;
+    }
+
+    .dark-panel-pf .ui-panel {
+        background-color: #444 !important;
+        border: 1px solid #444 !important;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+    }
+
+    /* Cabeçalho */
+    .dark-panel-pf .ui-panel-titlebar {
+        background-color: #555 !important;
+        color: #f0f0f0 !important;
+    }
+    .custom-select {
+        /* Remove a setinha padrão do browser */
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+
+        /* Estilo base */
+        width: 100%;
+        max-width: 300px;
+        padding: 0.6rem 1.5rem 0.6rem 1rem;
+        font-size: 1rem;
+        border: 2px solid #ccc;
+        border-radius: 0.5rem;
+        background-color: #fff;
+
+        /* Sombra suave */
+        box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+
+        /* Transição para foco */
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+

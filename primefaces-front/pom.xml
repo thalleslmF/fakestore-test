@@ -1,0 +1,94 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                             http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.example</groupId>
+  <artifactId>primefaces-front</artifactId>
+  <version>1.0</version>
+  <packaging>war</packaging>
+
+  <properties>
+    <maven.compiler.source>17</maven.compiler.source>
+    <maven.compiler.target>17</maven.compiler.target>
+    <primefaces.version>13.0.3</primefaces.version>
+    <javax.faces.version>2.3</javax.faces.version> <!-- JSF para Java EE 8 -->
+  </properties>
+
+  <dependencies>
+    <!-- CDI API (sem implementação) -->
+    <dependency>
+      <groupId>javax.enterprise</groupId>
+      <artifactId>cdi-api</artifactId>
+      <version>2.0</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <!-- CDI Implementação para Tomcat -->
+    <dependency>
+      <groupId>org.jboss.weld.servlet</groupId>
+      <artifactId>weld-servlet</artifactId>
+      <version>2.4.8.Final</version>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.datatype</groupId>
+      <artifactId>jackson-datatype-jsr310</artifactId>
+      <version>2.15.2</version> <!-- Use a versão compatível com seu Jackson -->
+    </dependency>
+
+    <dependency>
+      <groupId>org.glassfish</groupId>
+      <artifactId>javax.faces</artifactId>
+      <version>2.4.0</version>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <version>2.15.2</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.glassfish.jersey.core/jersey-client -->
+<!--    <dependency>-->
+<!--      <groupId>org.glassfish.jersey.core</groupId>-->
+<!--      <artifactId>jersey-client</artifactId>-->
+<!--      <version>3.1.10</version>-->
+<!--    </dependency>-->
+
+<!--    <dependency>-->
+<!--      <groupId>org.glassfish.jersey.core</groupId>-->
+<!--      <artifactId>jersey-client</artifactId>-->
+<!--      <version>3.1.10</version>-->
+<!--    </dependency>-->
+    <dependency>
+      <groupId>org.primefaces</groupId>
+      <artifactId>primefaces</artifactId>
+      <version>${primefaces.version}</version>
+    </dependency>
+
+    <!-- JSF API javax.faces (Java EE 8) -->
+    <dependency>
+      <groupId>javax.faces</groupId>
+      <artifactId>javax.faces-api</artifactId>
+      <version>${javax.faces.version}</version>
+      <scope>provided</scope> <!-- fornecido pelo Tomcat ou container -->
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/javax.ws.rs/javax.ws.rs-api -->
+    <dependency>
+      <groupId>javax.ws.rs</groupId>
+      <artifactId>javax.ws.rs-api</artifactId>
+      <version>2.1.1</version>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <finalName>primefaces-front</finalName>
+    <plugins>
+      <plugin>
+        <artifactId>maven-war-plugin</artifactId>
+        <version>3.2.2</version>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>

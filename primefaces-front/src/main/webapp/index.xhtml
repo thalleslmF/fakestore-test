@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui" xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+    <title>Busca de Usuários</title>
+    <h:outputStylesheet name="style.css" library="css" />
+
+</h:head>
+
+<h:body>
+    <h:form id="form-search">
+        <p:tabView styleClass="client-tabview" >
+            <p:tab title="Search Criteria"  titleStyleClass="tab-title">
+                <div class="form-group">
+                    <p:outputLabel for="user" value="Client"/>
+                    <h:selectOneMenu id="user" value="#{userBean.selectedUser}">
+                        <f:selectItems value="#{userBean.users}" var="pais"
+                                       itemValue="#{pais.id}" itemLabel="#{pais.name.firstname}-#{pais.name.lastname}"/>
+                    </h:selectOneMenu>
+                </div>
+                <div class="form-group">
+                    <p:outputLabel for="startDate" value="Order Date"/>
+                    <div class="date-range-inputs">
+                        <p:calendar id="startDate" value="#{userBean.startDate}"
+                                      pattern="dd/MM/yyyy"
+                                      placeholder="dd/MM/yyyy"/>
+
+                        <p:calendar id="endDate" value="#{userBean.endDate}"
+                                      pattern="dd/MM/yyyy"
+                                      placeholder="dd/MM/yyyy"
+                                      style="margin-left: 0.5rem;"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <p:outputLabel for="orderNumber" value="Order Number    "/>
+                    <p:inputText id="orderNumber" value="#{userBean.orderNumber}" placeholder="Order Number"/>
+                </div>
+                <div class="form-group button-group">
+                    <p:commandButton value="Reset" icon="pi pi-times" action="#{userBean.clean()}" update="@form"/>
+                    <p:commandButton value="Search" icon="pi pi-search" action="#{userBean.find()}" update="@form"/>
+                </div>
+            </p:tab>
+        </p:tabView>
+
+        <p:tabView value="#{userBean.orders}" var="order" dynamic="true" styleClass="client-tabview" >
+            <p:tab title="Orders"  titleStyleClass="tab-title">
+                <div class="header-username">
+                    <h2>${order.user.name.firstname} ${order.user.name.lastname}</h2>
+                </div>
+                <div class="orders-summary">
+                    <div class="order-summary-start">
+                        <p>#${order.id}</p>
+                        <p>${order.date}</p>
+                    </div>
+                    <div class="order-summary-end">
+                        <p>total</p>
+                    </div>
+                </div>
+                <div class="table-products">
+                    <p:dataTable value="#{order.products}" var="product"
+                                 styleClass="prod-table"
+                                 columnClasses="prod-col-product,prod-col-other,prod-col-other,prod-col-other">
+
+                        <p:column headerText="Product" styleClass="prod-col-product">
+                            <h:outputText value="#{product.description}" />
+                        </p:column>
+
+                        <p:column headerText="Price" styleClass="prod-col-other">
+                            <h:outputText value="#{product.price}">
+                                <f:convertNumber type="currency" currencySymbol="R$" locale="pt_BR" />
+                            </h:outputText>
+                        </p:column>
+
+                        <p:column headerText="Qty" styleClass="prod-col-other">
+                            <h:outputText value="#{product.quantity}" />
+                        </p:column>
+
+                        <p:column headerText="Subtotal" styleClass="prod-col-other">
+                            <h:outputText value="#{product.quantity * product.price}">
+                                <f:convertNumber type="currency" currencySymbol="R$" locale="pt_BR" />
+                            </h:outputText>
+                        </p:column>
+                    </p:dataTable>
+                </div>
+            </p:tab>
+        </p:tabView>
+    </h:form>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            function maskDateInput(e) {
+                let v = e.target.value.replace(/\D/g, '').slice(0,8);
+
+                if (v.length >= 5) {
+                    e.target.value = v.slice(0,2) + '/' + v.slice(2,4) + '/' + v.slice(4);
+                } else if (v.length >= 3) {
+                    e.target.value = v.slice(0,2) + '/' + v.slice(2);
+                } else {
+                    e.target.value = v;
+                }
+            }
+
+            document.querySelectorAll('.date-range-inputs input').forEach(function(input) {
+                console.log(input)
+                input.addEventListener('input', maskDateInput);
+            });
+        });
+    </script>
+</h:body>
+
+
+    <!--        &lt;!&ndash; Resultado da Tabela (dados estáticos) &ndash;&gt;-->
+<!--        <p:panel header="Resultado da Busca">-->
+
+<!--            <p:dataTable value="#{null}" var="user" rows="5" paginator="true">-->
+
+<!--                <p:column headerText="ID">-->
+<!--                    <h:outputText value="1" />-->
+<!--                </p:column>-->
+
+<!--                <p:column headerText="Nome">-->
+<!--                    <h:outputText value="João da Silva" />-->
+<!--                </p:column>-->
+
+<!--                <p:column headerText="Email">-->
+<!--                    <h:outputText value="joao@email.com" />-->
+<!--                </p:column>-->
+
+<!--                <p:column headerText="Ações">-->
+<!--                    <p:commandButton icon="pi pi-pencil" title="Editar" style="margin-right:5px;" />-->
+<!--                    <p:commandButton icon="pi pi-trash" title="Excluir" />-->
+<!--                </p:column>-->
+
+<!--            </p:dataTable>-->
+
+<!--        </p:panel>-->
+
+
+</html>
