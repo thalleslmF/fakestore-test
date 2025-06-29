@@ -8,6 +8,9 @@ on:
 jobs:
   build-docker-deploy:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: primefaces-front
 
     steps:
     - name: Checkout code
