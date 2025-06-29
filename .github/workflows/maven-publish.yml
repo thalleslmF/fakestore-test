@@ -27,7 +27,7 @@ jobs:
 
     - name: Build Docker image
       run: |
-        docker build -t thalleslmf/samsung-test .
+        docker build -t thallesf/samsung-testt .
 
     - name: Log in to Docker registry
       uses: docker/login-action@v2
@@ -37,6 +37,6 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
 
     - name: Push Docker image
-      run: docker push thalleslmf/samsung-test
+      run: docker push thallesf/samsung-test
 
    
