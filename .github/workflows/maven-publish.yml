@@ -37,6 +37,6 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
 
     - name: Push Docker image
-      run: docker push thallesf/samsung-test
+      run: docker push thallesf/samsung-test:latest
 
    
