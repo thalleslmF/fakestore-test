@@ -37,16 +37,6 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
 
     - name: Push Docker image
-      run: docker push myregistry.com/myapp:latest
+      run: docker push thalleslmf/samsung-test
 
-    - name: Deploy to WildFly server
-      env:
-        WILDFLY_HOST: ${{ secrets.WILDFLY_HOST }}
-        WILDFLY_USER: ${{ secrets.WILDFLY_USER }}
-        WILDFLY_PASSWORD: ${{ secrets.WILDFLY_PASSWORD }}
-      run: |
-        sshpass -p "$WILDFLY_PASSWORD" ssh -o StrictHostKeyChecking=no $WILDFLY_USER@$WILDFLY_HOST << EOF
-          /opt/wildfly/bin/jboss-cli.sh --connect --command="undeploy primefaces-front.war" || true
-          /opt/wildfly/bin/jboss-cli.sh --connect --command="deploy /path/to/primefaces-front.war --force"
-          exit
-        EOF
+   
