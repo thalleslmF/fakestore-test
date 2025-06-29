@@ -27,7 +27,7 @@ jobs:
 
     - name: Build Docker image
       run: |
-        docker build -t thallesf/samsung-test
+        docker build -t thallesf/samsung-test .
 
     - name: Log in to Docker registry
       uses: docker/login-action@v2
