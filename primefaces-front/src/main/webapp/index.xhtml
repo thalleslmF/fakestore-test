@@ -14,14 +14,14 @@
         <p:tabView styleClass="client-tabview" >
             <p:tab title="Search Criteria"  titleStyleClass="tab-title">
                 <div class="form-group">
-                    <p:outputLabel for="user" value="Client"/>
+                    <h:outputLabel  value="Client"/>
                     <h:selectOneMenu id="user" value="#{userBean.selectedUser}">
                         <f:selectItems value="#{userBean.users}" var="pais"
                                        itemValue="#{pais.id}" itemLabel="#{pais.name.firstname}-#{pais.name.lastname}"/>
                     </h:selectOneMenu>
                 </div>
                 <div class="form-group">
-                    <p:outputLabel for="startDate" value="Order Date"/>
+                    <p:outputLabel  value="Order Date"/>
                     <div class="date-range-inputs">
                         <p:calendar id="startDate" value="#{userBean.startDate}"
                                       pattern="dd/MM/yyyy"
@@ -34,7 +34,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <p:outputLabel for="orderNumber" value="Order Number    "/>
+                    <p:outputLabel  value="Order Number    "/>
                     <p:inputText id="orderNumber" value="#{userBean.orderNumber}" placeholder="Order Number"/>
                 </div>
                 <div class="form-group button-group">

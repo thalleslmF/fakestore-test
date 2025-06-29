@@ -1,32 +1,33 @@
-package com.example.view;
+package org.fakestore.view;
 
-import com.example.model.Order;
-import com.example.model.User;
-import com.example.service.OrderService;
-import com.example.service.UserService;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.ViewScoped;
-import javax.inject.Inject;
+import jakarta.faces.annotation.ManagedProperty;
+import jakarta.faces.view.ViewScoped;
+import org.fakestore.model.Order;
+import org.fakestore.model.User;
+import org.fakestore.service.OrderService;
+import org.fakestore.service.UserService;
+
+import jakarta.inject.Inject;
+import jakarta.inject.Named;
+
 import java.io.IOException;
 import java.io.Serializable;
 import java.time.Instant;
 import java.time.ZoneOffset;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Date;
-import java.util.stream.Collectors;
+import java.util.List;
 
-@ManagedBean(name = "userBean")
+@Named("userBean")
 @ViewScoped
 public class UserBean implements Serializable {
-    @ManagedProperty("#{userService}")
+    @Inject
     UserService userService;
 
 
 
-    @ManagedProperty("#{orderService}")
+    @Inject
     OrderService orderService;
     private String selectedUser;
     private Date startDate;

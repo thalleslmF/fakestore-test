@@ -1,13 +1,13 @@
-package com.example.service;
+package org.fakestore.service;
 
-import com.example.model.Order;
-import com.example.model.User;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Named;
+import org.fakestore.config.ConfigLoader;
+import org.fakestore.model.Order;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
-import javax.faces.bean.ApplicationScoped;
-import javax.faces.bean.ManagedBean;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Serializable;
@@ -17,20 +17,23 @@ import java.nio.charset.StandardCharsets;
 import java.time.Instant;
 import java.util.List;
 
-@ManagedBean(name= "orderService")
+@Named("orderService")
 @ApplicationScoped
 public class OrderService implements Serializable {
 
-    public List<Order> fetchOrders(String userId, Instant startDate, Instant endDate, String orderId) throws IOException {
+    private String getApiURL() {
+        return new ConfigLoader().get("store.api.host");
+    }
 
+    public List<Order> fetchOrders(String userId, Instant startDate, Instant endDate, String orderId) throws IOException {
+        var baseUrl = getApiURL();
         var url = new URL(String.format(
-                "http://localhost:8081/api/v1/orders?userId=%s&orderStartDate=%s&orderEndDate=%s&orderId=%s",
+                baseUrl + "/api/v1/orders?userId=%s&orderStartDate=%s&orderEndDate=%s&orderId=%s",
                 userId, startDate, endDate, orderId
         ));
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setRequestMethod("GET");
         conn.setRequestProperty("Accept", "application/json");
-
 
         try (InputStream is = conn.getInputStream()) {
             String json = new String(is.readAllBytes(), StandardCharsets.UTF_8);
@@ -40,7 +43,7 @@ public class OrderService implements Serializable {
             System.out.println("JSON Response: " + json);
             return mapper.readValue(json, mapper.getTypeFactory().constructCollectionType(List.class, Order.class));
         } catch (Exception e) {
-            System.out.printf("Error while getting orders: %s", e.getMessage());
+            System.out.printf("Error while getting orders: %s%n", e.getMessage());
             return null;
         }
     }

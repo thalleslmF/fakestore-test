@@ -1,9 +1,10 @@
-package com.example.service;
+package org.fakestore.service;
 
-import com.example.model.User;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Named;
+import org.fakestore.model.User;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import javax.faces.bean.ApplicationScoped;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Serializable;
@@ -11,9 +12,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
-import javax.faces.bean.ManagedBean;
 
-@ManagedBean(name= "userService")
+@Named("userService")
 @ApplicationScoped
 public class UserService implements Serializable {
 

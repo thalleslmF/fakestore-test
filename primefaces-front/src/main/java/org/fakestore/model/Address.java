@@ -1,4 +1,4 @@
-package com.example.model;
+package org.fakestore.model;
 
 public class Address {
     private Geolocation geolocation;

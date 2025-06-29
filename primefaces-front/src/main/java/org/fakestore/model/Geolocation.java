@@ -1,4 +1,4 @@
-package com.example.model;
+package org.fakestore.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
