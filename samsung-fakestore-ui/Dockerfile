@@ -1,4 +1,4 @@
-FROM quay.io/wildfly/wildfly:36.1.0.Final
+FROM quay.io/wildfly/wildfly:36.0.1.Final
 
 COPY target/samsung-fakestore-ui.war /opt/jboss/wildfly/standalone/deployments/
 
