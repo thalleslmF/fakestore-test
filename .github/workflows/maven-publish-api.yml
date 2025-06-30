@@ -27,7 +27,7 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t thallesf/samsung-test-api:latest samsung-fakestore-api
+          docker build -t thallesf/samsung-test-api:latest 
 
       - name: Log in to Docker Hub
         uses: docker/login-action@v2
