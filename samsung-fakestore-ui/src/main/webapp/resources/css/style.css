@@ -18,8 +18,11 @@
 }
 .prod-table {
     margin: auto;
-    background-color: #f0f0f0 !important;
+    background-color: #a9a5a5 !important;
     border-collapse: collapse !important;
+}
+.ui-datatable tr {
+    background-color: #f0f0f0 !important;
 }
 .ui-datatable thead th {
     background-color: #f0f0f0;
@@ -77,9 +80,12 @@
     color: black !important;
 
 }
-
+.ui-datatable tbody.ui-datatable-data {
+    outline: 0;
+}
 .form-group {
     display: grid;
+    gap: 1rem;
     grid-template-columns: 150px 1fr;
     align-items: center;
     margin: 1rem 0 1rem 5%;
@@ -118,36 +124,4 @@ textarea {
         width: 100%;
     }
 
-    .dark-panel-pf .ui-panel {
-        background-color: #444 !important;
-        border: 1px solid #444 !important;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.5);
-    }
-
-    /* Cabeçalho */
-    .dark-panel-pf .ui-panel-titlebar {
-        background-color: #555 !important;
-        color: #f0f0f0 !important;
-    }
-    .custom-select {
-        /* Remove a setinha padrão do browser */
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        appearance: none;
-
-        /* Estilo base */
-        width: 100%;
-        max-width: 300px;
-        padding: 0.6rem 1.5rem 0.6rem 1rem;
-        font-size: 1rem;
-        border: 2px solid #ccc;
-        border-radius: 0.5rem;
-        background-color: #fff;
-
-        /* Sombra suave */
-        box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
-
-        /* Transição para foco */
-        transition: border-color 0.2s ease, box-shadow 0.2s ease;
-    }
 

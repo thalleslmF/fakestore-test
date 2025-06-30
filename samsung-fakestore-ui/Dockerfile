@@ -1,4 +1,4 @@
-FROM quay.io/wildfly/wildfly:26.1.0.Final
+FROM quay.io/wildfly/wildfly:36.1.0.Final
 
 COPY target/primefaces-front.war /opt/jboss/wildfly/standalone/deployments/
 

@@ -4,8 +4,8 @@
                              http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.example</groupId>
-  <artifactId>primefaces-front</artifactId>
+  <groupId>org.test</groupId>
+  <artifactId>samsung-fakestore-ui</artifactId>
   <version>1.0</version>
   <packaging>war</packaging>
 
@@ -104,7 +104,7 @@
   </dependencies>
 
   <build>
-    <finalName>primefaces-front</finalName>
+    <finalName>samsung-fakestore-ui</finalName>
     <plugins>
       <plugin>
         <artifactId>maven-war-plugin</artifactId>

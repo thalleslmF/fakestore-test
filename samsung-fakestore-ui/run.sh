@@ -5,8 +5,8 @@ WILDFLY_DIR=wildfly-$WILDFLY_VERSION
 WILDFLY_FILE=wildfly-$WILDFLY_VERSION.tar.gz
 WILDFLY_URL="https://github.com/wildfly/wildfly/releases/download/$WILDFLY_VERSION/$WILDFLY_FILE"
 WILDFLY_HOME=$(pwd)/$WILDFLY_DIR
-WAR_PATH=target/primefaces-front.war
-APP_NAME=primefaces-front
+WAR_PATH=target/samsung-fakestore-ui.war
+APP_NAME=samsung-fakestore-ui
 
 if [ ! -d "$WILDFLY_DIR" ]; then
     echo "Baixando WildFly $WILDFLY_VERSION..."

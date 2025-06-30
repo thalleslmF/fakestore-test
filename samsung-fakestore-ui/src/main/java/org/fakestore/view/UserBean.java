@@ -82,13 +82,21 @@ public class UserBean implements Serializable {
     }
 
     public void find() throws IOException {
-        Instant instantStart = Instant.ofEpochMilli(startDate.getTime() - ZoneOffset.ofHours(+3).getTotalSeconds() * 1000L);
-        Instant instantEnd = Instant.ofEpochMilli(endDate.getTime() - ZoneOffset.ofHours(+3).getTotalSeconds() * 1000L);
+        Instant instantStart = null;
+        Instant instantEnd = null;
+        if (startDate != null ) {
+            instantStart = Instant.ofEpochMilli(startDate.getTime() - ZoneOffset.ofHours(+3).getTotalSeconds() * 1000L);
+        }
+        if (endDate != null) {
+
+             instantEnd = Instant.ofEpochMilli(endDate.getTime() - ZoneOffset.ofHours(+3).getTotalSeconds() * 1000L);
+        }
         System.out.println("Order: "+ this.orderNumber);
         System.out.println("User: "+ this.selectedUser);
         System.out.println("Start date: "+ instantStart);
         System.out.println("End date: "+ instantEnd);
         this.orders = this.orderService.fetchOrders(orderNumber, instantStart, instantEnd, selectedUser);
+        orders.forEach(it -> it.calculateTotalValue());
     }
 
     public void clean() {

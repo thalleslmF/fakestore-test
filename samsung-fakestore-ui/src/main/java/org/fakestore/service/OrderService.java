@@ -27,10 +27,26 @@ public class OrderService implements Serializable {
 
     public List<Order> fetchOrders(String userId, Instant startDate, Instant endDate, String orderId) throws IOException {
         var baseUrl = getApiURL();
-        var url = new URL(String.format(
-                baseUrl + "/api/v1/orders?userId=%s&orderStartDate=%s&orderEndDate=%s&orderId=%s",
-                userId, startDate, endDate, orderId
-        ));
+        StringBuilder sb = new StringBuilder(baseUrl + "/api/v1/orders?");
+        boolean first = true;
+
+        if (userId != null) {
+            sb.append("userId=").append(userId);
+            first = false;
+        }
+        if (startDate != null) {
+            sb.append(first ? "" : "&").append("orderStartDate=").append(startDate);
+            first = false;
+        }
+        if (endDate != null) {
+            sb.append(first ? "" : "&").append("orderEndDate=").append(endDate);
+            first = false;
+        }
+        if (orderId != null) {
+            sb.append(first ? "" : "&").append("orderId=").append(orderId);
+        }
+
+        URL url = new URL(sb.toString());
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setRequestMethod("GET");
         conn.setRequestProperty("Accept", "application/json");
