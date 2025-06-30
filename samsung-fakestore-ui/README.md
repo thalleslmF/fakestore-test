@@ -21,7 +21,7 @@ mvn clean package
 
 ## O arquivo gerado estará em:
 ```bash
-target/primefaces-front.war
+target/samsung-fake-store-ui.war
 ```
 
 ## Como executar
@@ -31,7 +31,7 @@ Exemplo usando Docker + WildFly:
 
 ```bash
 docker run -it --rm -p 8080:8080 \
-  -v $(pwd)/target/primefaces-front.war:/opt/jboss/wildfly/standalone/deployments/primefaces-front.war \
+  -v $(pwd)/target/samsung-fake-store-ui.war:/opt/jboss/wildfly/standalone/deployments/samsung-fake-store-ui.war \
   quay.io/wildfly/wildfly:36.1.0.Final
 
 ```
