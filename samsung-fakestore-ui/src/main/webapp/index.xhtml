@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui" xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:p="http://primefaces.org/ui" xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <h:head>
     <title>Busca de Usuários</title>
@@ -16,6 +17,7 @@
                 <div class="form-group">
                     <h:outputLabel  value="Client"/>
                     <h:selectOneMenu id="user" value="#{userBean.selectedUser}">
+                        <f:selectItem itemLabel="Selecione" itemValue="" noSelectionOption="true" />
                         <f:selectItems value="#{userBean.users}" var="pais"
                                        itemValue="#{pais.id}" itemLabel="#{pais.name.firstname}-#{pais.name.lastname}"/>
                     </h:selectOneMenu>
@@ -47,57 +49,59 @@
             </p:tab>
         </p:tabView>
 
-        <p:tabView value="#{userBean.orders}" var="order" dynamic="true" styleClass="client-tabview" >
+        <p:tabView rendered="#{not empty userBean.orders}"   dynamic="true" styleClass="client-tabview" >
             <p:tab title="Orders"  titleStyleClass="tab-title">
-                <div class="header-username">
-                    <h2>${order.user.name.firstname} ${order.user.name.lastname}</h2>
-                </div>
-                <div class="orders-summary">
-                    <div class="order-summary-start">
-                        <p>#${order.id}</p>
-                        <p>${order.date}</p>
+                <ui:repeat value="#{userBean.orders}" var="order">
+                    <div class="header-username">
+                        <h2>${order.user.name.firstname} ${order.user.name.lastname}</h2>
                     </div>
-                    <div class="order-summary-end">
-                        <p>#${order.totalValue}</p>
+                    <div class="orders-summary">
+                        <div class="order-summary-start">
+                            <p>#${order.id}</p>
+                            <p>${order.date}</p>
+                        </div>
+                        <div class="order-summary-end">
+                            <p>#${order.totalValue}</p>
+                        </div>
                     </div>
-                </div>
-                <div class="table-products">
-                    <p:dataTable value="#{order.products}" var="product"
-                                 styleClass="prod-table"
-                                 columnClasses="prod-col-product,prod-col-other,prod-col-other,prod-col-other">
+                    <div class="table-products">
+                        <p:dataTable value="#{order.products}" var="product"
+                                     styleClass="prod-table"
+                                     columnClasses="prod-col-product,prod-col-other,prod-col-other,prod-col-other">
 
-                        <p:column headerText="Product" styleClass="prod-col-product">
-                            <div style="display: flex; align-items: flex-start; gap: 0.5rem;">
-                                <h:graphicImage value="#{product.image}" alt="Product Image" style="width:40px; height:40px;" />
-                                <div>
+                            <p:column headerText="Product" styleClass="prod-col-product">
+                                <div style="display: flex; align-items: flex-start; gap: 0.5rem;">
+                                    <h:graphicImage value="#{product.image}" alt="Product Image" style="width:90px; height:90px;" />
                                     <div>
-                                        <h:outputText value="#{product.description}" />
-                                    </div>
-                                    <div style="font-size: 0.9em; color: #666; margin-top: 0.25rem;">
-                                        <h:outputText value="#{product.category}" />
+                                        <div>
+                                            <h:outputText value="#{product.description}" />
+                                        </div>
+                                        <div style="font-size: 0.9em; color: #666; margin-top: 0.25rem;">
+                                            <h:outputText value="#{product.category}" />
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </p:column>
+                            </p:column>
 
 
-                        <p:column headerText="Price" styleClass="prod-col-other">
-                            <h:outputText value="#{product.price}">
-                                <f:convertNumber type="currency" currencySymbol="R$" locale="pt_BR" />
-                            </h:outputText>
-                        </p:column>
+                            <p:column headerText="Price" styleClass="prod-col-other">
+                                <h:outputText value="#{product.price}">
+                                    <f:convertNumber type="currency" currencySymbol="R$" locale="pt_BR" />
+                                </h:outputText>
+                            </p:column>
 
-                        <p:column headerText="Qty" styleClass="prod-col-other">
-                            <h:outputText value="#{product.quantity}" />
-                        </p:column>
+                            <p:column headerText="Qty" styleClass="prod-col-other">
+                                <h:outputText value="#{product.quantity}" />
+                            </p:column>
 
-                        <p:column headerText="Subtotal" styleClass="prod-col-other">
-                            <h:outputText value="#{product.quantity * product.price}">
-                                <f:convertNumber type="currency" currencySymbol="R$" locale="pt_BR" />
-                            </h:outputText>
-                        </p:column>
-                    </p:dataTable>
-                </div>
+                            <p:column headerText="Subtotal" styleClass="prod-col-other">
+                                <h:outputText value="#{product.quantity * product.price}">
+                                    <f:convertNumber type="currency" currencySymbol="R$" locale="pt_BR" />
+                                </h:outputText>
+                            </p:column>
+                        </p:dataTable>
+                    </div>
+                </ui:repeat>
             </p:tab>
         </p:tabView>
     </h:form>

@@ -95,7 +95,7 @@ public class UserBean implements Serializable {
         System.out.println("User: "+ this.selectedUser);
         System.out.println("Start date: "+ instantStart);
         System.out.println("End date: "+ instantEnd);
-        this.orders = this.orderService.fetchOrders(orderNumber, instantStart, instantEnd, selectedUser);
+        this.orders = this.orderService.fetchOrders(selectedUser, instantStart, instantEnd, orderNumber);
         orders.forEach(it -> it.calculateTotalValue());
     }
 
